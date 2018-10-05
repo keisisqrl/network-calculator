@@ -1,0 +1,38 @@
+form.calc {
+  display: block;
+  width: max-content;
+  flex-shrink: 0;
+}
+form.calc div {
+  display: table-row;
+}
+
+form.calc label,input,span {
+  display: table-cell;
+}
+
+form.calc span.value {
+  text-align: left;
+  padding-left: 5px;
+}
+
+fieldset {
+  display: table;
+}
+
+legend {
+  text-align: left;
+  background: #000;
+  color: #fff;
+  font-weight: bold;
+  padding: 2px 5px;
+}
+
+form.calc label,span.label {
+  text-align: right;
+  padding-right: 5px;
+}
+
+input:read-only {
+  background: #eee;
+}
