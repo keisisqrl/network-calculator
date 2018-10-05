@@ -1,0 +1,12 @@
+language: node_js
+node_js:
+  - "stable"
+script:
+  - npm install
+  - npm run build
+deploy:
+  provider: pages
+  skip_cleanup: true
+  local_dir: build
+  on:
+    branch: master
