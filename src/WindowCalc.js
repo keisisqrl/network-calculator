@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import "./form.css";
-var humanFormat = require("human-format");
+import CalcInput from "./CalcInput.js";
+import CalcOutput from "./CalcOutput.js";
 
 class WindowCalc extends Component {
   constructor(props) {
@@ -35,50 +36,41 @@ class WindowCalc extends Component {
       <fieldset>
         <legend>Calculate window requirements</legend>
         <div className="grid">
-          <label htmlFor="rate">Bandwidth in bits per second</label>
-          <input
-            type="text"
+          <CalcInput
             name="rate"
+            label="Bandwidth in bits per second"
             value={rate}
             onChange={this.changeState}
+            unit="b/s"
           />
-          <span className="value">
-            {humanFormat(parseInt(rate), { unit: "b/s" })}
-          </span>
 
-          <label htmlFor="rtt">RTT in milliseconds</label>
-          <input
-            type="text"
+          <CalcInput
             name="rtt"
+            label="RTT in milliseconds"
             value={rtt}
             onChange={this.changeState}
+            unit="s"
           />
-          <span className="value">
-            {humanFormat(parseFloat(rtt) / 1000, { unit: "s" })}
-          </span>
 
-          <label htmlFor="window">Window in bytes</label>
-          <input
-            type="text"
+          <CalcInput label="Window in bytes"
             name="window"
             value={window}
             onChange={this.changeState}
+            unit="B"
           />
-          <span className="value">
-            {humanFormat(parseInt(window), { unit: "B" })}
-          </span>
 
-          <span className="label">Theoretical transfer rate</span>
-          <span className="value">{currentRate} bits/s</span>
-          <span className="value">
-            {humanFormat(parseInt(currentRate), { unit: "b/s" })}
-          </span>
+          <CalcOutput
+            label="Theoretical transfer rate"
+            value={currentRate}
+            unit="b/s"
+          />
 
-          <span className="label">Theoretical ideal window</span>
-          <span className="value">{idealWindow} Bytes</span>
-          <span className="value">
-            {humanFormat(idealWindow, { unit: "B" })}
-          </span>
+
+        <CalcOutput
+          label="Theoretical ideal window"
+          value={idealWindow}
+          unit="B"
+          />
 
           <span className="label">Transfer rate ratio</span>
           <span className="value">

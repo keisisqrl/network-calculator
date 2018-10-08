@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import "./form.css";
-var humanFormat = require("human-format");
+import CalcInput from "./CalcInput.js";
+import CalcOutput from "./CalcOutput.js";
 
 class XferCalc extends Component {
   constructor(props) {
@@ -31,31 +32,30 @@ class XferCalc extends Component {
       <fieldset>
         <legend>Calculate transfer time for rate</legend>
         <div className="grid">
-          <label htmlFor="rate">Rate in bits per second</label>
-          <input
-            type="text"
+
+          <CalcInput
             name="rate"
             value={rate}
             onChange={this.changeState}
-          />
-          <span className="value">
-            {humanFormat(parseInt(rate), { unit: "b/s" })}
-          </span>
+            label="Rate in bits per second"
+            unit="b/s"
+            />
 
-          <label htmlFor="size">Transfer size in bytes</label>
-          <input
-            type="text"
+
+          <CalcInput
             name="size"
             value={size}
             onChange={this.changeState}
-          />
-          <span className="value">
-            {humanFormat(parseInt(size), { unit: "B" })}
-          </span>
+            label="Transfer size in bytes"
+            unit="B"
+            />
 
-          <label htmlFor="time">Theoretical transfer time</label>
-          <span className="value">{xferTime} s</span>
-          <span className="value">{humanFormat(xferTime, { unit: "s" })}</span>
+          <CalcOutput
+            name="time"
+            value={xferTime}
+            label="Theoretical transfer time"
+            unit="s"
+            />
         </div>
       </fieldset>
     );
