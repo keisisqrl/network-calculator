@@ -28,7 +28,7 @@ div.grid > * {
   background: #eee;
 }
 
-div.grid label,
+div.grid > label,
 input,
 span {
   display: block;
@@ -40,12 +40,12 @@ div.grid input {
   background: #fff;
 }
 
-div.grid span.value, span.rawValue {
+div.grid > span.value, span.rawValue {
   text-align: left;
   padding-left: 3px;
 }
 
-div.grid label,
+div.grid > label,
 span.label {
   padding-right: 5px;
   text-align: right;
@@ -53,6 +53,11 @@ span.label {
 
 input:read-only {
   background: #eee;
+}
+
+div.grid > span.scalePick {
+  grid-column-start: 1;
+  grid-column-end: -1;
 }
 
 @media(max-width: 600px) {
@@ -67,5 +72,5 @@ input:read-only {
   div.grid span.value {
     margin-bottom: 2px;
   }
-  
+
 }

@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import "./form.css";
 import CalcInput from "./CalcInput.js";
 import CalcOutput from "./CalcOutput.js";
+import ScalePick from "./ScalePick.js";
 
 class WindowCalc extends Component {
   constructor(props) {
@@ -9,7 +10,8 @@ class WindowCalc extends Component {
     this.state = {
       rate: 50000000, // 50 Mbit/s
       rtt: 150, // 150 ms
-      window: 65535 // 65535 bytes
+      window: 65535, // 65535 bytes
+      scale: 'SI' // human-format scale
     };
   }
 
@@ -24,6 +26,12 @@ class WindowCalc extends Component {
       });
     }
   };
+  
+  changeScale = e => {
+      this.setState({
+        [e.target.name]: e.target.value
+      });
+    }
 
   render() {
     const { rate, rtt, window } = this.state;
@@ -33,6 +41,7 @@ class WindowCalc extends Component {
     );
 
     return (
+      <form>
       <fieldset>
         <legend>Calculate window requirements</legend>
         <div className="grid">
@@ -42,6 +51,7 @@ class WindowCalc extends Component {
             value={rate}
             onChange={this.changeState}
             unit="b/s"
+            scale={this.state.scale}
           />
 
           <CalcInput
@@ -50,19 +60,22 @@ class WindowCalc extends Component {
             value={rtt}
             onChange={this.changeState}
             unit="s"
-          />
+            scale="SI"
+          /> {/* Time is always SI */}
 
           <CalcInput label="Window in bytes"
             name="window"
             value={window}
             onChange={this.changeState}
             unit="B"
+            scale={this.state.scale}
           />
 
           <CalcOutput
             label="Theoretical transfer rate"
             value={currentRate}
             unit="b/s"
+            scale={this.state.scale}
           />
 
 
@@ -70,6 +83,7 @@ class WindowCalc extends Component {
           label="Theoretical ideal window"
           value={idealWindow}
           unit="B"
+          scale={this.state.scale}
           />
 
         <span className="label progLabel">Transfer rate ratio</span>
@@ -79,8 +93,14 @@ class WindowCalc extends Component {
           <span className="value">
             {Math.round((currentRate / rate) * 10000) / 100}%
           </span>
+
+          <ScalePick
+            scale={this.state.scale}
+            onChange={this.changeScale}
+            />
         </div>
       </fieldset>
+    </form>
     );
   }
 }

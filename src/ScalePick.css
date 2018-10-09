@@ -1,0 +1,7 @@
+span.scalePick * {
+  display: inline;
+}
+
+span.scalePick > span {
+  margin-right: 10px;
+}

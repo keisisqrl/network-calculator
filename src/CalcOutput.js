@@ -15,7 +15,10 @@ class CalcOutput extends Component {
       <span className="value">
         {humanFormat(
           this.props.value,
-          {unit: this.props.unit}
+          {
+            unit: this.props.unit,
+            scale: this.props.scale
+          }
         )}
       </span>
       </>
