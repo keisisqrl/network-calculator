@@ -9,7 +9,7 @@ class CalcOutput extends Component {
       <span className="label">
         {this.props.label}
       </span>
-      <span className="value">
+      <span className="rawValue">
         {this.props.value} {this.props.unit}
       </span>
       <span className="value">

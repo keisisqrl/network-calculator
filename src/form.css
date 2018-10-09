@@ -3,6 +3,7 @@ fieldset {
   height: fit-content;
   background: #eee;
   border-radius: 8px;
+  margin-bottom: 10px;
 }
 
 legend {
@@ -39,7 +40,7 @@ div.grid input {
   background: #fff;
 }
 
-div.grid span.value {
+div.grid span.value, span.rawValue {
   text-align: left;
   padding-left: 3px;
 }
@@ -52,4 +53,19 @@ span.label {
 
 input:read-only {
   background: #eee;
+}
+
+@media(max-width: 600px) {
+  div.grid {
+    grid-template-columns: repeat(2,auto);
+  }
+  div.grid span.value, span.progLabel, span.progValue {
+    grid-column-start: 1;
+    grid-column-end: 3;
+    text-align: center;
+  }
+  div.grid span.value {
+    margin-bottom: 2px;
+  }
+  
 }

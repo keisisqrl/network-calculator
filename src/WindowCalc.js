@@ -38,7 +38,7 @@ class WindowCalc extends Component {
         <div className="grid">
           <CalcInput
             name="rate"
-            label="Bandwidth in bits per second"
+            label="Bandwidth in bits/second"
             value={rate}
             onChange={this.changeState}
             unit="b/s"
@@ -72,8 +72,8 @@ class WindowCalc extends Component {
           unit="B"
           />
 
-          <span className="label">Transfer rate ratio</span>
-          <span className="value">
+        <span className="label progLabel">Transfer rate ratio</span>
+          <span className="rawValue progValue">
             <progress max={rate} value={currentRate} />
           </span>
           <span className="value">
