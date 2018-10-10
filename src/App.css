@@ -5,3 +5,14 @@
   flex-wrap: wrap;
   padding: 10px;
 }
+
+h2.updateAlert {
+  display: block;
+  border-color: #32DE8A;
+  border-style: solid;
+  border-width: 2px;
+  border-radius: 5px;
+  padding: 6px;
+  background: #A2E8DD;
+  color: #35524A;
+}
