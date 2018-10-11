@@ -3,12 +3,13 @@ var humanFormat = require("human-format");
 
 class CalcIO extends Component {
   myValue = () => {
-    return this.props.value;
+    return parseFloat(this.props.value);
   }
 
   ppValue = () => {
+    let val = this.myValue();
     return humanFormat(
-      parseFloat(this.myValue()),
+      (Number.isNaN(val) ? 0 : val),
       {
         unit: this.props.unit,
         scale: this.props.scale

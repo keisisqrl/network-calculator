@@ -1,10 +1,10 @@
-import React, { Component } from "react";
+import React from "react";
 import "./form.css";
 import CalcInput from "./CalcInput.js";
 import CalcOutput from "./CalcOutput.js";
-import ScalePick from "./ScalePick.js";
+import GenCalc from "./GenCalc.js";
 
-class WindowCalc extends Component {
+class WindowCalc extends GenCalc {
   constructor(props) {
     super(props);
     this.state = {
@@ -15,24 +15,6 @@ class WindowCalc extends Component {
     };
   }
 
-  changeState = e => {
-    if (isNaN(parseFloat(e.target.value))) {
-      this.setState({
-        [e.target.name]: 0
-      });
-    } else {
-      this.setState({
-        [e.target.name]: e.target.value
-      });
-    }
-  };
-
-  changeScale = e => {
-      this.setState({
-        [e.target.name]: e.target.value
-      });
-    }
-
   render() {
     const { rate, rtt, window } = this.state;
     const currentRate = ((parseInt(window) * 8) / parseFloat(rtt)) * 1000;
@@ -40,11 +22,8 @@ class WindowCalc extends Component {
       (parseInt(rate) * parseFloat(rtt)) / 1000 / 8
     );
 
-    return (
-      <form>
-      <fieldset>
-        <legend>Calculate window requirements</legend>
-        <div className="grid">
+    return this.wrap("Calculate window requirements",
+      <>
           <CalcInput
             name="rate"
             label="Bandwidth in bits/second"
@@ -94,20 +73,14 @@ class WindowCalc extends Component {
             {Math.round((currentRate / rate) * 10000) / 100}%
           </span>
 
-          <ScalePick
-            scale={this.state.scale}
-            onChange={this.changeScale}
-            />
-        </div>
-      </fieldset>
-    </form>
+          </>
     );
   }
 }
 
 class RttInput extends CalcInput {
   myValue = () => {
-    return this.props.value / 1000;
+    return parseFloat(this.props.value) / 1000;
   }
 }
 
