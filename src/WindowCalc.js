@@ -26,7 +26,7 @@ class WindowCalc extends Component {
       });
     }
   };
-  
+
   changeScale = e => {
       this.setState({
         [e.target.name]: e.target.value
@@ -54,7 +54,7 @@ class WindowCalc extends Component {
             scale={this.state.scale}
           />
 
-          <CalcInput
+        <RttInput
             name="rtt"
             label="RTT in milliseconds"
             value={rtt}
@@ -102,6 +102,12 @@ class WindowCalc extends Component {
       </fieldset>
     </form>
     );
+  }
+}
+
+class RttInput extends CalcInput {
+  myValue = () => {
+    return this.props.value / 1000;
   }
 }
 

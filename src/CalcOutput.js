@@ -1,8 +1,9 @@
-import React, { Component } from "react";
+import React from "react";
 import "./form.css";
-var humanFormat = require("human-format");
+import CalcIO from "./CalcIO.js";
 
-class CalcOutput extends Component {
+class CalcOutput extends CalcIO {
+
   render () {
     return (
       <>
@@ -13,13 +14,7 @@ class CalcOutput extends Component {
         {this.props.value} {this.props.unit}
       </span>
       <span className="value">
-        {humanFormat(
-          this.props.value,
-          {
-            unit: this.props.unit,
-            scale: this.props.scale
-          }
-        )}
+        {this.ppValue()}
       </span>
       </>
     )
