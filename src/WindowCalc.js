@@ -17,7 +17,9 @@ class WindowCalc extends GenCalc {
 
   render() {
     const { rate, rtt, window } = this.state;
-    const currentRate = ((parseInt(window) * 8) / parseFloat(rtt)) * 1000;
+    const currentRate = Math.floor(
+      ((parseInt(window) * 8) / parseFloat(rtt)) * 1000
+    );
     const idealWindow = Math.round(
       (parseInt(rate) * parseFloat(rtt)) / 1000 / 8
     );
@@ -42,7 +44,14 @@ class WindowCalc extends GenCalc {
             scale="SI"
           /> {/* Time is always SI */}
 
-          <CalcInput label="Window in bytes"
+          <CalcOutput
+            label="Ideal window"
+            value={idealWindow}
+            unit="B"
+            scale={this.state.scale}
+            />
+
+          <CalcInput label="Current window in bytes"
             name="window"
             value={window}
             onChange={this.changeState}
@@ -51,19 +60,12 @@ class WindowCalc extends GenCalc {
           />
 
           <CalcOutput
-            label="Theoretical transfer rate"
+            label="Max current transfer rate"
             value={currentRate}
             unit="b/s"
             scale={this.state.scale}
           />
 
-
-        <CalcOutput
-          label="Theoretical ideal window"
-          value={idealWindow}
-          unit="B"
-          scale={this.state.scale}
-          />
 
         <span className="label progLabel">Transfer rate ratio</span>
           <span className="rawValue progValue">
